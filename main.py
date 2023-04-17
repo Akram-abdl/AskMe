@@ -17,29 +17,28 @@ load_dotenv()
 
 # Enable the required intents
 intents = discord.Intents.all()
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='/', intents=intents)
 openai.api_key = os.getenv('OPENAI_API_KEY')
 
 last_message_timestamp = None  # define last_message_timestamp here
 
-@bot.command(name="hello")
-async def hello(ctx):
-    await ctx.send(f"Hello, {ctx.author}!")
+@bot.slash_command()
+async def hello(ctx, name: str = None):
+    name = name or ctx.author.name
+    await ctx.respond(f"Hello {name}!")
 
 # Define translation function
 async def translate_message(message_text: str, target_language: str) -> str:
     async with aiohttp.ClientSession() as session:
         auth_key = os.getenv('DEEPL_AUTH_KEY')
-        url = f'https://api-free.deepl.com/v2/translate'
+        url = 'https://api-free.deepl.com/v2/translate'
         headers = {'Authorization': f'DeepL-Auth-Key {auth_key}', 'User-Agent': 'YourApp/1.2.3'}
         data = {'text': message_text, 'target_lang': target_language}
         async with session.post(url, headers=headers, data=data) as response:
-            if response.status == 200:
-                response_json = await response.json()
-                translated_text = response_json['translations'][0]['text']
-                return translated_text
-            else:
+            if response.status != 200:
                 return f"Error translating message: {response.status} {response.reason}"
+            response_json = await response.json()
+            return response_json['translations'][0]['text']
 
 
 
@@ -135,9 +134,7 @@ async def get_quiz_answer(question, quiz_topic):
 
     response = requests.get(url, headers=headers)
     response.raise_for_status()
-    answer = response.json()["answers"][0]
-
-    return answer
+    return response.json()["answers"][0]
 
 @bot.command(name="quiz")
 async def quiz(ctx):
