@@ -11,22 +11,28 @@ AskMe is a multi-functional Discord bot designed to answer all your questions, t
 
 ## Commands
 
-* `!hello` - A greeting message from the bot.
-* `!ask <question>` - Ask any question and get a response from OpenAI's GPT-3.
-* `!translate <target_language>;<message>` - Translate the message to the target language.
-* `!joke` - Get a joke or a fun fact from OpenAI's Curie engine.
-* `!fact` - Get a random fact from OpenAI's Curie engine.
-* `!news <topic>` - Get the latest news updates on a particular topic.
-* `!quiz` - Play a quiz game on any topic.
+This Discord bot has various useful commands to enhance your server's user experience. Below is a list of available commands:
+
+* **/weather [city]** - Fetches the 5-day weather forecast for the specified city, including temperature and weather conditions.
+
+* **/news [country_code] [optional: topic]** - Retrieves the top news headlines for the specified country, with an optional topic to filter the news by.
+
+* **/fact** - Shares a random fact for your entertainment and learning.
+
+* **/joke** - Tells a random joke to lighten up the atmosphere.
+
+* **/ask [question]** - Answers your questions on various topics using the power of AI.
+
+* **/translate [target_language] [text]** - Translates the given text to the specified target language.
+
+To use these commands, simply type the command with the required parameters in the chat. Enjoy!
 
 ## Installation
 
 1. Clone this repository.
-2. Create a virtual environment using `virtualenv venv`.
-3. Activate the virtual environment using `source venv/bin/activate`.
-4. Install the required packages using `pip install -r requirements.txt`.
-5. Create a `.env` file and add the necessary environment variables
-6. Run the bot using `python main.py`.
+2. Install the required packages using `pip install -r requirements.txt`.
+3. Create a `.env` file and add the necessary environment variables
+4. Run the bot using `python main.py`.
 
 ## Contributing
 
