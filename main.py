@@ -23,12 +23,10 @@ intents = discord.Intents.all()
 # Create the bot instance with a prefix and enabled intents
 bot = commands.Bot(command_prefix='/', intents=intents)
 
-# Load the cogs
-bot.load_extension('Cogs.greetings')
-bot.load_extension('Cogs.fun')
-bot.load_extension('Cogs.news')
-bot.load_extension('Cogs.translation')
-bot.load_extension('Cogs.ask')
+# Load the cogs by looping through the Cogs folder
+for filename in os.listdir('./Cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'Cogs.{filename[:-3]}')
 
 # Run the bot
 bot.run(os.getenv('DISCORD_TOKEN'))
