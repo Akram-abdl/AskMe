@@ -7,7 +7,9 @@ AskMe is a multi-functional Discord bot designed to answer all your questions, t
 * Ask any question and get an AI-generated response using OpenAI's GPT-3.
 * Translate messages to any language supported by Azure Translate API.
 * Get news updates on any topic using News API.
-* Play a quiz game and test your knowledge on any topic.
+* Get random facts
+* Ask for jokes
+* Get information about the weather
 
 ## Commands
 
